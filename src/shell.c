@@ -30,6 +30,13 @@ int main(int ac __attribute__((unused)), char **av)
 			_printenv();
 			continue;
 		}
+		if (_strcmp(commands[0], "about") == 0)
+		{
+			about();
+			free(commands);
+			free(prompt);
+			continue;
+		}
 		if (_strcmp(_getenv("PATH"), "") == 0)
 		{
 			free(prompt);

@@ -1,2 +1,2 @@
 default:
-	gcc *.c -o shelly
+	gcc ./src/*.c -o shelly

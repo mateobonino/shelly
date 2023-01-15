@@ -36,5 +36,5 @@ int charlen(char *);
 char *str_concat(char *, char *);
 void gatorr(char **, char *, char *, int);
 void checkcd(char **);
-
+void about(void);
 #endif /*MAIN_H*/

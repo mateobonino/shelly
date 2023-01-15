@@ -145,3 +145,14 @@ void checkcd(char **commands) {
 		chdir(_getenv("HOME"));
 	}
 }
+
+void about(void)
+{
+	system("clear");
+	write(1, "About:\n", strlen("About:\n"));
+	write(1, "Program written in C Language by Mateo Bonino", strlen("Program written in C Language by Mateo Bonino"));
+	write(1, " <mbonino1810@gmail.com>\n", strlen(" <mbonino1810@gmail.com>\n"));
+	write(1, "Follow the progress of the project in github!: github.com/mateobonino/shelly\n", strlen("Follow the progress of the project in github!: github.com/mateobonino/shelly\n"));
+	getc(stdin);
+	system("clear");
+}
