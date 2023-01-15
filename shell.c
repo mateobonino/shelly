@@ -9,7 +9,7 @@ int main(int ac __attribute__((unused)), char **av)
 {
 	int ex_status = 0;
 	char *prompt = NULL, **commands = NULL;
-
+	system("clear");
 	signal(SIGINT, SIG_IGN);
 	while (1)
 	{

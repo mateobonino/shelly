@@ -42,9 +42,15 @@ void print_prompt(void)
 {
 	if (isatty(STDIN_FILENO))
 	{
+		char buf[256];
+		write(1, "\033[1;33m", strlen("\033[1;33m"));
 		write(1, "[", 1);
 		write(1, _getenv("USER"), strlen(_getenv("USER")));
-		write(1, "@shelly]$ ", 11);
+		write(1, "@shelly] ", 10);
+		write(1, "~ ", 2);
+		write(1, getcwd(buf, sizeof(buf)), strlen(getcwd(buf, sizeof(buf))));
+		write(1, "\n$ ", 3);
+		write(1, "\033[0m", strlen("\033[0m"));
 	}
 }
 /**
@@ -99,12 +105,17 @@ int _printenv(void)
 */
 void gatorr(char **av, char *cmd, char *msg, int num __attribute__((unused)))
 {
+	write(1, "\033[1;31m", strlen("\033[1;31m"));
 	write(2, av[0], strlen(av[0]));
 	write(2, ": 1: ", 5);
 	write(2, cmd, strlen(cmd));
 	write(2, ": ", 2);
 	write(2, msg, strlen(msg));
+	write(1, "\033[0m", strlen("\033[0m"));
 	write(2, "\n", 1);
+	write(1, "\033[1;31m", strlen("\033[1;31m"));
+	write(2, "[X]", 3);
+	write(1, "\033[0m", strlen("\033[0m"));
 	/*_puts(av[0]);
 	_puts(": ");
 	_putchar('1');
@@ -124,9 +135,13 @@ void checkcd(char **commands) {
 			closedir(dir);
 			chdir(commands[1]);
 		} else {
-			printf("error xd\n");
+			write(1, "\033[1;31m", strlen("\033[1;31m"));
+			write(1, commands[1], strlen(commands[1]));
+			write(1, ": No such file or directory", strlen(": No such file or directory"));
+			write(1, "\033[0m", strlen("\033[0m"));
+			write(1, "\n", 1);
 		}
 	} else {
-		printf("no args passed xd\n");
+		chdir(_getenv("HOME"));
 	}
 }
